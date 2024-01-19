@@ -1,0 +1,79 @@
+body{margin: 0; font-family: Arial, sans-serif; background-image: linear-gradient(#000000, #4a1212,#000000); overflow-x: hidden;}
+
+.cont{display: flex; justify-content: space-between; flex-wrap: wrap; }
+.barra{background-color: transparent; width: 100%; height: 30px;}
+#cy{z-index: 1;  height: calc(100% - 60px); width: 100%; position: absolute; float: float; background-color: white;} 
+.cyMin{height: 350px; width:350px;}
+
+.txt{color: white; font-size: 18px; /*background-color: #660708;*/  height: 20px;}
+.txtE{text-align: center; background-image: linear-gradient(#000000, #4a1212); color: white;}
+
+input{border: none; font-family: Arial, sans-serif; height: 30px; width: 100px; text-align: center; &:focus {border: none; outline: none;} }
+input[type=file]{top:0px; left:0px; right:0px; bottom:0px; width:100%; opacity: 0;}
+input[type=color]{width: 70px; height: 30px;vertical-align: middle; margin-top: -1px; margin-left:-10px;}
+select{width: 100px;}  option:hover {background-color:#D00000;}
+.blan{color: white;}
+
+.icoimg{max-width: 10%;height: auto;}
+.circulo{width: 55px; height: 55px; border-radius: 50%;overflow: hidden; float: right; margin: 2.5px 15px 0 15px;}
+img{object-fit: cover; width:100%; height:100%;}
+
+.titulo{width: 250px; color: white; font-family: sans-serif; font-size: 15px; border-radius: 15px; background-color: #6A040F;
+ height: 22px; margin: 4px; &:hover{background-color: #D00000;}}
+
+ .boton { border: none;color: white;text-align: center;text-decoration: none;display: inline-block; height: 30px;
+    font-size: 16px;/*margin: 4px 2px;*/-webkit-transition-duration: 0.4s; transition-duration: 0.4s;cursor: pointer;}
+.boton1 {background-color: black; &:hover{background-color: linear-gradient(#D00000, #450404);}}
+.botonP {background-color: white; border: 2px solid black;  &:hover{border: none; color: white;background-image: linear-gradient(#D00000, #450404);}}
+.botonC {background-color: #6A040F; &:hover{background-color: #9D0208;}}
+.boton2 {background-color: white; color: black; &:hover{background-color: #c7c7c7;}}
+.boton3 {background-color: white; color: black; &:hover{background-color: #D00000; color: white;}}
+
+.botonP {color: black;padding: 10px 10px;text-align: center;text-decoration: none;display: inline-block;
+    font-size: 16px;margin: 4px 2px;-webkit-transition-duration: 0.4s; /* Safari */transition-duration: 0.4s;cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+
+    .tabla{ padding: 10px 10px;}
+
+    .tabla>input{ margin: 0;}
+    .vista{overflow-x: auto; overflow-y: auto; white-space: nowrap; border-radius: 8px; width: 100%; height: 400px; padding: 30px;
+        background-color: black; text-align: center;}
+    
+    .celdaEN{ width: 120px;height: 25px; border-radius: none; border: solid 1px white; text-align: center; background-color: transparent;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none; color: white;
+        &:focus{border: solid black; outline: none; padding: none;}}
+    
+    .celda{ width: 120px;height: 25px; border-radius: none; border: solid 1px #0A1128; text-align: center;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none;
+        &:focus{border: solid black; outline: none; padding: none;}}
+
+    .celdaNom{ width: 120px;height: 25px; border-radius: none; border: solid 1px white; text-align: center; background-color: transparent;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none; color: white;
+        &:focus{border: solid white; outline: none; padding: none;}}
+    
+    .celdaN{ width: 50px;height: 25px; border-radius: none; border: solid 1px #0A1128; text-align: center;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none;
+        &:focus{border: solid black; outline: none; border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none;}}
+        
+    .celdaP{ width: 50px;height: 127px; border-radius: none; border: solid 1px #0A1128; text-align: center;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none;
+        &:focus{border: solid black; outline: none; border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 0.5px;border-top-width: 0.5px; padding: none;}}
+            
+    .supe{font-weight: bolder; text-align: center;}
+    
+    .supe > .celda{ text-align: center; border-radius: none; background-color: #e5e5e5; color: black; border: solid #0A1128;
+        border-left-width: 0.5px; border-right-width: 0.5px; border-bottom-width: 2px;border-top-width: 2px; padding: none;} 
+    
+    .cont_lista{width: 100%; background-color: rgb(229, 247, 68); border-radius: 0px 20px 0 20px; height: 80px;}
+    
+    .barra_de_carga {width: 0;height: 25px;background-color: #4CAF50; margin-top: 10px;color: white;text-align: center;line-height: 30px;
+        transition: width 0.1s; border-radius: 10px;}
+    
+    .barraAnimacion {position: relative; width: 0px; height: 15px; border-radius: 7px; margin: 7px; animation-name: animated; 
+     animation-fill-mode: forwards; animation-timing-function: linear}
+    
+     .contenedor{text-align: center;}
+    
+     h4{text-align: center; padding: 10px 0 0 0; color: white;}
+
+  

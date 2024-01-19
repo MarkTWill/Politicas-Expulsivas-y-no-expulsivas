@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafos</title>
+    <link rel="stylesheet" href="interfaz-P.css">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/b3b702ac35.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="barra cont"><div class="txt cont"> Politicas de planificacion</div><div class="txt cont"><input class="titulo" id="mostrarTitulo" type="text" value="Mark.json"></div><div class="txt cont" style="float: right;">Mark Will Ccallo Chambi<div class="circulo"><img src="gran.jpg"></div></div></div>
+    <div class="barra cont"><div class="dropdown">
+        <button class="boton boton1 dropdown-toggle" id="des1" data-bs-toggle="dropdown">Archivo</button>
+        <ul class="dropdown-menu" aria-labelledby="des1">
+          <li><a class="dropdown-item">Abrir<input onchange="cargar()" type="file" id="archivo" accept=".json" style="position: absolute;"></a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#miModal">Guardar</a></li>
+          <li><a class="dropdown-item" onclick="actualizar()">Limpiar</a></li></ul>
+        <button class="boton boton1" data-bs-toggle="offcanvas" data-bs-target="#des2">Nuevo proceso</button>
+        <button class="boton boton1" data-bs-toggle="offcanvas" data-bs-target="#des3">Politicas de planificacion</button>
+        <button class="boton boton1" data-bs-toggle="offcanvas" onclick="cambiarOpcion()">Actualizar</button>
+        <button class="boton boton1" data-bs-toggle="offcanvas" data-bs-target="#des5">Estilos</button>
+      </div></div>
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="des2" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header txtE" style="height: 60px;">
+            <div class="btn-group">
+                <a class="btn active" style="color: white;" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#des2">Nuevo</a>
+                <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des3">Politicas</a>
+                <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des5">Estilos</a>
+            </div>
+            <button class="boton botonC" data-bs-dismiss="offcanvas"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="offcanvas-body" style="text-align: center;"><h6 style="text-align: left;">Nuevo proceso</h6><hr>
+            <h6>Proceso</h6><label>Nombre de Proceso:&nbsp; </label><input type="text" id="nombre" >
+            <label>Tiempo de llegada:&nbsp;</label><input type="number" id="Tllegada" min="0" value="0">
+            <label>Tiempo de Ejecución: &nbsp;</label><input type="number" id="tiempo" value="5" min="1"><hr>
+            <button class="botonP botonP" onclick="agregar()">Agregar Proceso <i class="fa-solid fa-plus"></i></button><hr>
+            <button class="botonP botonP" onclick="agregarFila()">Agregar Fila <i class="fa-solid fa-plus"></i></button>
+            <button class="botonP botonP" onclick="eliminarFila()">Eliminar Fila <i class="fa-solid fa-plus"></i></button><hr>
+
+        </div></div>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="des3" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header txtE" style="height: 60px;">
+                <div class="btn-group">
+                    <a class="btn active" style="color: white;"  data-bs-toggle="offcanvas" data-bs-target="#des2">Nuevo</a>
+                    <a class="btn" style="color: white;" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#des3">Politicas</a>
+                    <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des5">Estilos</a>
+                </div>
+                <button class="boton botonC" data-bs-dismiss="offcanvas"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="offcanvas-body" style="text-align: center;"><h6 style="text-align: left;">Politicas de planificacion</h6><hr>
+                <h6>Expulsivas y no expulsivas</h6><hr>
+                <select class="opciones botonP" style="width: 200PX;" id="tipo" onchange="cambiarOpcion()">
+                  <option style="color: black;" value="FCFS" >FCFS</option>
+                  <option style="color: black;" value="SJF" selected>SJF</option>
+                  <option style="color: black;" value="RR" >ROUND ROBIN</option>
+                  <option style="color: black;" value="SRT" >SRT</option>
+              </select>&nbsp;&nbsp;<br><br>
+              <label>Quantum &nbsp;</label><input type="number" id="quantum" value="1" min="1">
+        </div></div>
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="des4" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header txtE" style="height: 60px;">
+                <div class="btn-group">
+                    <a class="btn active" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des2">Nuevo</a>
+                    <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des3">Politicas</a>
+                    <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des5">Estilos</a>
+                  </div>
+                <button class="boton botonC" data-bs-dismiss="offcanvas"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="offcanvas-body" style="text-align: center;"><h6 style="text-align: left;">Caminos</h6><hr>
+                <h6>Buscar Caminos</h6>
+                <input type="text" value="Inicio" disabled><input type="text" value="Destino" disabled><br>
+                <select class="boton boton2" id="orig"></select>&nbsp;&nbsp;<select class="boton boton2" id="dest"></select>&nbsp;&nbsp;<br><br>
+                <button class="boton boton1" onclick="ir_a_destino()">Buscar Caminos <i class="fa-solid fa-magnifying-glass"></i></button><br><hr>
+                <textarea name="" id="resul" cols="30" rows="15"></textarea><hr>
+                <div id="cont"></div>
+        </div></div> 
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="des5" aria-labelledby="offcanvasScrollingLabel">
+          <div class="offcanvas-header txtE" style="height: 60px;">
+              <div class="btn-group">
+                  <a class="btn active" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des2">Nuevo</a>
+                  <a class="btn" style="color: white;" data-bs-toggle="offcanvas" data-bs-target="#des3">Politicas</a>
+                  <a class="btn" style="color: white;" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#des5">Estilos</a>
+                </div>
+              <button class="boton botonC" data-bs-dismiss="offcanvas"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="offcanvas-body" style="text-align: center;"><h6 style="text-align: left;">Estilos</h6><hr><h6>Nodo</h6>
+              <input style="width: 150px;" type="text" value="Color de nodo" disabled><input style="width: 150px;" type="text" value="Tamaño" disabled><br>
+              <input name="color" type="color" id="colorN" value="#000000"/><input style="width:70px;" type="number" disabled><input value="20" style="width:70px; margin-left: 20px; border-style: solid;" type="number" id="tamN"><br><br>
+              <button class="boton boton1" onclick="cambiarNodo()">Color de nodo</button>
+      </div></div> <br>
+
+      <div class="row align-items-start">
+        <div class="col">
+            <h4 id="tit">Lista de procesos</h4>
+            <div class="tabla">
+                <div class="supe"><input class="celdaEN" type="text" value="Nombre" disabled><input class="celdaEN" type="text" value="Tiemp. Llegada" disabled><input class="celdaEN" type="text" value="Tiempo" disabled><input class="celdaEN" type="text" value="T. en proceso" disabled><input class="celdaEN" type="text" value="T. en espera" disabled></div>
+                <div class="contenedor" id="contenedor"></div>
+                <br><div class="supe"><input class="celdaNom"  type="text" disabled><input class="celdaNom" type="text" disabled><input class="celdaNom"  type="text" ><input class="celdaNom" id="TRR" type="text" ><input class="celdaNom" id="TER" type="text" ></div>
+            </div>
+        </div>
+      </div>
+      <div class="row align-items-start">
+        <div class="col">
+            <div class="tabla" style="padding: 15px 10%;">
+                <div id="vista" class="vista">
+                    <div id="vistaD"></div>
+                    <div id="vistaN"></div><br>
+                    <div id="vistaP"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    <div class="position-fixed bottom-0 start-50 p-3" style="z-index: 11">
+      <div id="liveToast" class="toast hide" role="notificacion" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header" style="background-image: linear-gradient(#D00000, #450404); color: white;">
+          <img class="icoimg" src="https://i.pinimg.com/originals/2b/bb/fe/2bbbfea6d7d519d47a5c64d1d18c5a70.jpg" class="rounded me-2">
+          <strong class="me-auto">&nbsp;&nbsp;Notificacion</strong><small>ahora</small>
+          <button type="button" class="btn-close" id="cerrar" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div><div class="toast-body">
+          <input type="text" id="alertaN" style="width: 100%;">
+        </div></div></div>
+  <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header" style="background-color: #D00000; color: white;">
+        <h5 class="modal-title" id="exampleModalLabel">Nombre el archivo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body"><input type="text" id="nomArchivo" style="outline: auto; width: 100%;" placeholder="Ingrese el nombre del archivo..."></div>
+    <div class="modal-footer">
+        <button type="button" class="boton boton3" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="boton boton3" onclick="guardar()">Guardar tabla</button>
+    </div> </div></div></div>
+    <div class="barraInf" id="btnNotif"></div>
+</body>
+<script> 
+
+function cambiarOpcion() {llenar();limpiar();
+    dibujarTab();
+    var seleccion = document.getElementById("tipo");
+    var opcionSeleccionada = seleccion.options[seleccion.selectedIndex].value;
+    escribir('tit',`Lista de procesos: ${seleccion.value}`);
+    if (opcionSeleccionada=='FCFS') {FCFS();}
+    else if (opcionSeleccionada=='SJF') {SJF();}
+    if (opcionSeleccionada=='RR') {RR();}
+    if (opcionSeleccionada=='SRT') {SRT();}
+}
+
+var tabla=document.getElementById('contenedor'), contenido = "", id_tabla = 0;
+var vistaN = document.getElementById("vistaN");
+var vistaD = document.getElementById("vistaD");
+var vistaP = document.getElementById("vistaP");
+var numeracion=celda_nom, celda_nom = `<input class="celda" style="width: 95px; border: none;" type="text" value="">`,celda_nom1 = `<input class="celda" style="background-color: transparent; width: 95px; border: none;" type="text" value="">`;;
+var representacion="", repre_linea = "";
+
+function escribir(a, t){document.getElementById(a).value=t;}
+function limpiar(){representacion="", repre_linea = ""; vistaD.innerHTML = representacion; vistaN.innerHTML=numeracion;}
+function actualizar(){location.reload();}
+
+function repre_prosesamiento(){ var tipo = document.getElementById('tipo');
+    escribir('tit',`Lista de procesos: ${tipo.value}`);
+    if(tipo.value == "FCFS"){FCFS();}
+    if(tipo.value == "SJF"){SJF();}
+    if(tipo.value == "RR"){RR();}
+    if(tipo.value == "SRT"){SRT();}
+}
+
+function dibujarTab(){
+  numeracion= celda_nom; 
+  var pilaM=celda_nom1 
+    for(var i=0;i<=50;i++){numeracion += `<input class="celdaN" style="border: none;" type="text" id="num${i}" value="${i}">`}
+    vistaN.innerHTML=numeracion;
+    for(var i = 0;i<id_tabla+1;i++){
+      repre_linea = `<input class="celda" type="text" id="nombre${i+1}r">`;
+      for(var j = 0;j<50;j++){repre_linea+=`<input class="celdaN" type="text" id="${i+1}:${j+1}">`;}
+      repre_linea+=`<br>`; representacion +=repre_linea;
+    }
+    for(var i=0;i<=50;i++){pilaM += `<textarea class="celdaP" id="pila${i}"></textarea>`}
+    vistaP.innerHTML=pilaM;
+
+    vistaD.innerHTML = representacion;
+}
+
+class Proceso {
+  constructor(id_, nombre_, TLL_, T_) {
+    this.id = id_;
+    this.nombre = nombre_;
+    this.TLL = TLL_;
+    this.T = T_;
+  }
+}
+
+var procesos=[]; 
+
+function llenar(){procesos.splice(0, procesos.length);
+    for(var i= 1;i<=id_tabla;i++){
+        var nombre = document.getElementById("nombre"+i+"").value;
+        var t_llegada = parseInt(document.getElementById("TLL"+i+"").value);
+        var tiempo = parseInt(document.getElementById("T"+i+"").value);
+        var nuevoProceso = new Proceso(i,nombre, t_llegada, tiempo);
+        procesos.push(nuevoProceso); 
+    }
+    procesos.forEach(proceso => {console.log(`id: ${proceso.id},Nombre: ${proceso.nombre}, TLL: ${proceso.TLL}, T: ${proceso.T}`);});
+}
+
+function agregar(){
+    var nombre = document.getElementById("nombre").value;
+    var tiempo =parseInt(document.getElementById("tiempo").value);
+    var t_llegada = parseInt(document.getElementById("Tllegada").value);
+    if(nombre == ""|| tiempo == ""){notificacion("ingrese los campos requeridos")}
+    else{
+        if(id_tabla==0){contenido +=`<input class="celdaNom" type="text" id="nombre${id_tabla+1}" value="${nombre}"><input class="celda" id="TLL${id_tabla+1}" type="text" value="${t_llegada}" ><input class="celda" id="T${id_tabla+1}" type="text" value="${tiempo}" ><input class="celda" id="TR${id_tabla+1}" type="text" ><input class="celda" id="TE${id_tabla+1}" type="text" >`;
+}else{contenido +=`<br><input class="celdaNom" type="text" id="nombre${id_tabla+1}" value="${nombre}"><input class="celda" id="TLL${id_tabla+1}" type="text" value="${t_llegada}" ><input class="celda" id="T${id_tabla+1}" type="text" value="${tiempo}" ><input class="celda" id="TR${id_tabla+1}" type="text" ><input class="celda" id="TE${id_tabla+1}" type="text" >`;
+}
+        tabla.innerHTML = contenido;
+        escribir("nombre", "");limpiar();
+        dibujarTab();
+    } id_tabla++; 
+    repre_prosesamiento();
+}
+
+
+function agregarFila(){
+    if(id_tabla==0){contenido +=`<input class="celdaNom" type="text" id="nombre${id_tabla+1}" value=""><input class="celda" id="TLL${id_tabla+1}" type="text" value="" ><input class="celda" id="T${id_tabla+1}" type="text" value="" ><input class="celda" id="TR${id_tabla+1}" type="text" ><input class="celda" id="TE${id_tabla+1}" type="text" >`;
+}else{contenido +=`<br><input class="celdaNom" type="text" id="nombre${id_tabla+1}" value=""><input class="celda" id="TLL${id_tabla+1}" type="text" value="" ><input class="celda" id="T${id_tabla+1}" type="text" value="" ><input class="celda" id="TR${id_tabla+1}" type="text" ><input class="celda" id="TE${id_tabla+1}" type="text" >`;
+}    tabla.innerHTML = contenido;
+    escribir("nombre", "");limpiar();
+    dibujarTab();id_tabla++;
+}
+
+function eliminarFila() {
+  if (id_tabla > 0) {    id_tabla--;
+
+    contenido = contenido.substring(0, contenido.lastIndexOf('<br>'));
+    tabla.innerHTML = contenido;
+    limpiar();
+    dibujarTab();//repre_prosesamiento();
+  }
+}
+
+//planificador Round robin
+function RR(){llenar(); dibNombre();limpiarGrafico();
+    var quantum = document.getElementById('quantum').value;
+    var tiempoTotal=0, q=0, cola=[], tLlegada=[];
+    for (var i = 0; i < procesos.length; i++) {tiempoTotal += procesos[i].T;}
+
+    for(var i = 0;i<tiempoTotal+10;i++){
+        for(var j=0;j<id_tabla;j++){if(procesos[j].TLL==i){cola.push(procesos[j].nombre);}}
+
+        if(cola.length>0){
+            if(q==quantum){q=0;
+                if(buscarT(cola[0])>0){
+                    var temp=cola.shift();
+                    cola.push(temp);
+                }else{var idt=document.getElementById(`T${buscarID(cola[0])}`).value;
+                    escribir(`TR${buscarID(cola[0])}`, i-buscar(cola[0])); 
+                    escribir(`TE${buscarID(cola[0])}`, (i-buscar(cola[0]))-idt); 
+                    cola.shift();}
+            }
+        }
+
+        if(buscarT(cola[0])==0){var idt=document.getElementById(`T${buscarID(cola[0])}`).value;
+            escribir(`TR${buscarID(cola[0])}`, i-buscar(cola[0]));
+            escribir(`TE${buscarID(cola[0])}`, (i-buscar(cola[0]))-idt); 
+            cola.shift(); q=0;}
+
+        escribir(`pila${i}`, cola.join('\n'));
+        
+        for(var j=0;j<cola.length;j++){
+            if(j==0){marcarG(buscarID(cola[j]),i+1);}
+            else{marcarR(buscarID(cola[j]),i+1);}
+        }
+        if(cola.length>0){
+            if(q!=quantum){
+                var id = buscarID(cola[0]);
+                procesos[id-1].T -= 1;
+                q++;
+            }    
+        }
+    }
+    llenarTablaR();
+}
+
+//planificador SRT
+function SRT(){llenar(); dibNombre();limpiarGrafico();
+    var tiempoTotal=0, cola=[], tLlegada=[];
+    for (var i = 0; i < procesos.length; i++) {tiempoTotal += procesos[i].T;}
+
+    for(var i = 0;i<tiempoTotal+10;i++){
+        for(var j=0;j<id_tabla;j++){
+            if(procesos[j].TLL==i){
+                cola.push(procesos[j].nombre);
+                if(cola.length>1){var nuevoProceso = cola.length-1; console.log(cola);   
+                    for(var m=cola.length;m>0;m--){ 
+                        if(buscarT(cola[nuevoProceso])<buscarT(cola[m-1])){
+                            var temporal = cola[nuevoProceso];
+                            cola[nuevoProceso] = cola[m-1];
+                            cola[m-1] = temporal;
+                            nuevoProceso=m-1;
+                        }
+                    }
+                }
+            } 
+        }
+
+        if(buscarT(cola[0])==0){var idt=document.getElementById(`T${buscarID(cola[0])}`).value;
+            escribir(`TR${buscarID(cola[0])}`, i-buscar(cola[0]));
+            escribir(`TE${buscarID(cola[0])}`, (i-buscar(cola[0]))-idt); 
+            cola.shift();}
+
+        escribir(`pila${i}`, cola.join('\n'));
+        
+        for(var j=0;j<cola.length;j++){
+            if(j==0){marcarG(buscarID(cola[j]),i+1);}
+            else{marcarR(buscarID(cola[j]),i+1);}
+        }
+
+        if(cola.length>0){var id = buscarID(cola[0]); procesos[id-1].T -= 1;}
+    }
+    llenarTablaR();
+}
+
+function tieneDuplicados(array) {
+  return (new Set(array)).size !== array.length;
+}
+
+//planificador SJF
+function SJF(){llenar(); dibNombre();limpiarGrafico();
+    var tiempoTotal=0, cola=[], tLlegada=[], inicio=false;
+    for (var i = 0; i < procesos.length; i++) {tiempoTotal += procesos[i].T;}
+
+    for(var i = 0;i<tiempoTotal+10;i++){
+        for(var j=0;j<id_tabla;j++){
+            if(procesos[j].TLL==i){if(cola.length==0){inicio=true;}
+                cola.push(procesos[j].nombre);
+                tLlegada.push(procesos[j].TLL);
+                if(cola.length>1){var nuevoProceso = cola.length-1; console.log(cola);   
+                    for(var m=cola.length;m>0;m--){ 
+                        if(buscarT(cola[nuevoProceso])<buscarT(cola[m])){
+                            var temporal = cola[nuevoProceso];
+                            cola[nuevoProceso] = cola[m];
+                            cola[m] = temporal;
+                            nuevoProceso=m;
+                        }
+                    }
+                }
+            } 
+        }
+
+        if(inicio && tieneDuplicados(tLlegada)){inicio=false;
+            if(cola.length>0){var nuevoProceso = cola.length-1; 
+                for(var m=cola.length;m>0;m--){ 
+                    for(var a=cola.length;a>0;a--){ 
+                        if(buscarT(cola[a])<buscarT(cola[m-1])){
+                            var temporal = cola[a];
+                            cola[a] = cola[m-1];
+                            cola[m-1] = temporal;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(buscarT(cola[0])==0){var idt=document.getElementById(`T${buscarID(cola[0])}`).value;
+            escribir(`TR${buscarID(cola[0])}`, i-buscar(cola[0]));
+            escribir(`TE${buscarID(cola[0])}`, (i-buscar(cola[0]))-idt); 
+            cola.shift();
+        }
+
+        escribir(`pila${i}`, cola.join('\n'));
+        
+        for(var j=0;j<cola.length;j++){
+            if(j==0){marcarG(buscarID(cola[j]),i+1);}
+            else{marcarR(buscarID(cola[j]),i+1);}
+        }
+
+        if(cola.length>0){var id = buscarID(cola[0]); procesos[id-1].T -= 1;}
+    }
+    llenarTablaR();
+}
+
+function tieneDuplicados(array) {return (new Set(array)).size !== array.length;}
+
+function FCFS(){llenar(); dibNombre();limpiarGrafico();
+    var tiempoTotal=0;
+    for (var i = 0; i < procesos.length; i++) {tiempoTotal += procesos[i].T;}
+    var pila= [], datos=[], orden=[],TI=0; ejecucion = 0, activo=false;
+    
+    for(var i=0;i<tiempoTotal;i++){   
+        for(var j=0;j<id_tabla;j++){
+            if(procesos[j].TLL == i){
+                if(pila.length == 0){ejecucion += i+procesos[j].T; llegada=procesos[j].TLL; TI=procesos[j].TLL;}
+                else{ejecucion += procesos[j].T;}
+                datos.push(ejecucion); 
+                pila.push(procesos[j].nombre);
+                //orden.push(procesos[j].id);
+
+                for(var a=procesos[j].TLL;a<ejecucion;a++){marcarG(procesos[j].id, a+1);}
+                escribir('TR'+procesos[j].id,ejecucion-procesos[j].TLL);
+                escribir('TE'+procesos[j].id,TI-procesos[j].TLL);
+                for(var a=procesos[j].TLL;a<TI;a++){marcarR(procesos[j].id, a+1);}
+                TI=ejecucion;
+
+                escribir("pila"+i,pila.join('\n'));
+            }else{escribir("pila"+i,pila.join('\n'));}
+            if(datos[0]==i){pila.shift(); datos.shift(); escribir("pila"+i,pila.join('\n'));}
+        }
+    }
+    llenarTablaR();
+}
+
+function llenarTablaR(){var TR=0, TE=0, promTR=0, promTE=0, TET=[];
+    for(var i = 0;i<procesos.length;i++){
+        var TRD = parseInt(document.getElementById(`TR${i+1}`).value);
+        var TED = parseInt(document.getElementById(`TE${i+1}`).value);
+        TR+=TRD;
+        TE+=TED;
+    }
+    promTR=TR/procesos.length; escribir('TRR',promTR.toFixed(2));
+    promTE=TE/procesos.length; escribir('TER',promTE.toFixed(2));
+}
+
+//Buscar atrivutos de de clase mediante nombre
+function buscar(tll){for(var i = 0;i<procesos.length;i++){if(procesos[i].nombre==tll){return procesos[i].TLL;}}}
+function buscarT(t){for(var i = 0;i<procesos.length;i++){ if(procesos[i].nombre==t){return procesos[i].T;}}}
+function buscarID(t){for(var i = 0;i<procesos.length;i++){if(procesos[i].nombre==t){return procesos[i].id;}}}
+
+function marcarG(j,i){var temp = asignar_id(j, i); temp.style.backgroundColor = "green"; }
+function marcarR(j,i){var temp = asignar_id(j, i); temp.style.backgroundColor = "#D00000"; }
+function marcarB(j,i){var temp = asignar_id(j, i); temp.style.backgroundColor = "white"; }
+
+function limpiarGrafico(){for(var i=0;i<50;i++){for(var j=0;j<id_tabla;j++){marcarB(j+1,i+1);}}}
+
+function asignar_id(j,i){return document.getElementById(""+j+":"+i+"");}
+
+function dibNombre(){for(var i=0;i<id_tabla;i++){escribir("nombre"+(i+1)+"r", procesos[i].nombre); }}
+
+//Guardar===================================================
+function guardar() {
+  var nomArchivo = document.getElementById('nomArchivo').value;
+  if (nomArchivo === '') {
+    notificacion('Nombre el archivo');
+    return;
+  }
+
+  // Crear un array para almacenar la información de los procesos
+  var procesosArray = [];
+
+  // Llenar el array de procesos
+  for (var i = 1; i <= id_tabla; i++) {
+    var nombre = document.getElementById("nombre" + i).value;
+    var t_llegada = parseInt(document.getElementById("TLL" + i).value);
+    var tiempo = parseInt(document.getElementById("T" + i).value);
+
+    procesosArray.push({
+      id: i,
+      nombre: nombre,
+      TLL: t_llegada,
+      T: tiempo
+    });
+  }
+
+  // Convertir el array a una cadena JSON
+  var datosJSON = JSON.stringify(procesosArray);
+
+  // Aquí deberías implementar la lógica para guardar o descargar el archivo
+  // En este ejemplo, estoy creando un enlace de descarga ficticio
+  var a = document.createElement('a');
+  a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(datosJSON);
+  a.download = nomArchivo + '.json';
+  a.click();
+
+  notificacion('Se guardó correctamente el archivo JSON.');
+}
+
+//Cargar=====================================================
+function cargar() {
+  var archivoInput = document.getElementById('archivo');
+  var archivo = archivoInput.files[0];
+
+  if (!archivo) {notificacion('Seleccione un archivo para cargar.');return;}
+  var leer = new FileReader();
+
+  leer.onload = function (e) {
+    try {
+      var contenidoArchivo = e.target.result;
+      var datos = JSON.parse(contenidoArchivo);
+      limpiarTabla();
+      for (var i = 0; i < datos.length; i++) {agregarFilaATabla(datos[i]);}
+
+      notificacion('Archivo cargado y datos mostrados correctamente');
+    } catch (error) {
+      notificacion('Error al leer el archivo: ' + error.message);
+    }
+  };
+  leer.readAsText(archivo);
+}
+function limpiarTabla() {tabla.innerHTML = "";}
+
+function agregarFilaATabla(proceso) {
+    if(id_tabla==0){contenido +=`<input class="celdaNom" type="text" id="nombre${proceso.id}" value="${proceso.nombre}"><input class="celda" id="TLL${proceso.id}" type="text" value="${proceso.TLL}"><input class="celda" id="T${proceso.id}" type="text" value="${proceso.T}"><input class="celda" id="TR${proceso.id}" type="text"><input class="celda" id="TE${proceso.id}" type="text">`;
+}else{contenido +=`<br><input class="celdaNom" type="text" id="nombre${proceso.id}" value="${proceso.nombre}"><input class="celda" id="TLL${proceso.id}" type="text" value="${proceso.TLL}"><input class="celda" id="T${proceso.id}" type="text" value="${proceso.T}"><input class="celda" id="TR${proceso.id}" type="text"><input class="celda" id="TE${proceso.id}" type="text">`;
+} 
+    tabla.innerHTML=contenido;
+    limpiar();
+    dibujarTab();
+
+    id_tabla++;
+    repre_prosesamiento();
+}
+
+function notificacion(texto){var toastElement = document.getElementById('liveToast'), notif=document.getElementById('alertaN');
+     notif.value=""; notif.value=texto;const toast = new bootstrap.Toast(toastElement); toast.show();}
+</script>
+</html>
